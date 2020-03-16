@@ -52,7 +52,7 @@ _py-kms_ is a port of node-kms created by [cyrozap](http://forums.mydigitallife.
 - You can run py-kms deamonized (via [Etrigan](https://github.com/SystemRage/Etrigan)) using a command like: `python pykms_Server.py etrigan start` and stop it with: `python pykms_Server.py etrigan stop`.
 - With Etrigan you have another way to launch py-kms GUI (specially suitable if you're using a virtualenv), so: `python pykms_Server.py etrigan start -g`
 and stop the GUI with the same precedent command (or interact with EXIT button).
-
+- Windows gvlk key comparison table (KMS activation only);Microsoft official website address `https://technet.microsoft.com/en-us/library/jj612867.aspx`
 # Docker
 ![auto-docker](https://img.shields.io/docker/cloud/automated/pykmsorg/py-kms)
 ![status-docker](https://img.shields.io/docker/cloud/build/pykmsorg/py-kms)
