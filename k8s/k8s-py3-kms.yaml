@@ -53,4 +53,4 @@ spec:
       port: 1688
       targetPort: 1688
       name: py3-kms-port
-  type: LoadBlancer
+  type: LoadBalancer
