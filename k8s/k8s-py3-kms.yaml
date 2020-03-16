@@ -1,0 +1,56 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: py3-kms
+  namespace: devops
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: py3-kms
+    spec:
+      containers:
+      - name: py3-kms
+        image: pykmsorg/py-kms:latest
+        ports:
+          - containerPort: 1688
+        volumeMounts:
+          - name: timezone
+            mountPath: /etc/localtime
+        resources:
+          limits:
+            memory: 1Gi
+        env:
+          - name: PORT
+            value: "1688"
+          - name: SQLITE
+            value: "true"
+          - name: HWID
+            value: "RANDOM"
+          - name: LOGLEVEL
+            value: "INFO"
+          - name: LOGFILE
+            value: "/var/log/py3-kms.log"
+          - name: LOGSIZE
+            value: "2"
+      volumes:
+      - name: timezone
+        hostPath:
+          path: /usr/share/zoneinfo/Asia/Shanghai
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: py3-kms-svc
+  namespace: devops
+spec:
+  selector:
+    app: py3-kms
+  ports:
+    - protocol: TCP
+      port: 1688
+      targetPort: 1688
+      name: py3-kms-port
+  type: LoadBlancer
